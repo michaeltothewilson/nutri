@@ -11,6 +11,27 @@ li > a {
   color: white;
 }
 
+li > a:hover {
+  color: white;
+}
+
 .sidebar {
   background-color: #F26835;
+}
+
+.logo {
+  color: white;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.nav-item {
+  font-weight: 700;
+  margin: 15px;
+}
+
+.flex-column > hr {
+  color: white;
+  width: 90%;
+  margin-left: 15px;;
 }

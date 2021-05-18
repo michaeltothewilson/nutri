@@ -13,17 +13,21 @@ function App() {
     <Router>
       <div className="App">
         <div className="row h-100">
-          <nav className="col-2 sidebar">
+          <nav className="col-2 pt-4 sidebar">
+            <h1 className="logo">nutri</h1>
             <ul className="nav flex-column">
+              <hr/>
               <li className="nav-item nav-link">
                 <Link to="/">dashboard</Link>
               </li>
+              <hr/>
               <li className="nav-item nav-link">
                 <Link to="/foodlog">food log</Link>
               </li>
               <li className="nav-item nav-link">
                 <Link to="/browse">browse</Link>
               </li>
+              <hr/>
             </ul>
           </nav>
 
