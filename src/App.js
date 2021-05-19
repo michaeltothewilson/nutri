@@ -30,20 +30,25 @@ function App() {
               <hr/>
             </ul>
           </nav>
-
-          {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/foodlog">
-              <FoodLog />
-            </Route>
-            <Route path="/browse">
-              <Browse />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <div className="col-10" id="dashboard">
+            <div className="search-bar">
+            </div>
+            <div className="dashboard-body">
+            {/* A <Switch> looks through its children <Route>s and
+                renders the first one that matches the current URL. */}
+              <Switch>
+                <Route path="/foodlog">
+                  <FoodLog />
+                </Route>
+                <Route path="/browse">
+                  <Browse />
+                </Route>
+                <Route path="/">
+                  <Home />
+                </Route>
+              </Switch>
+            </div>
+          </div>
         </div>
       </div>
     </Router>

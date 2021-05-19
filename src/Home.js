@@ -1,9 +1,7 @@
 export default function Home() {
-    return (
-      <>
-      <div className="col-8 mt-5">
-        <h2>Nutri Dashboard</h2>
-      </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <h2 className="page-title pt-5">Dashboard</h2>
+    </>
+  );
+}

@@ -1,9 +1,7 @@
 export default function Browse() {
-    return (
-        <>
-        <div className="col-8 mt-5">
-          <h2>Browse Food</h2>
-        </div>
-        </>
-    );
+  return (
+    <>
+      <h2 className="page-title pt-5">Browse Food</h2>
+    </>
+  );
 }

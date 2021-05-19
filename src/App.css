@@ -6,6 +6,7 @@ html, body, #root, .App {
   height: 100%;
 }
 
+/* Sidebar Navigation */
 li > a {
   text-decoration: none;
   color: white;
@@ -34,4 +35,27 @@ li > a:hover {
   color: white;
   width: 90%;
   margin-left: 15px;;
+}
+
+/* Dashboard */
+#dashboard {
+  padding: 0;
+}
+
+.search-bar {
+  height: 10%;
+}
+
+.dashboard-body {
+  margin-top: 0;
+  height: 90%;
+  background-color: #f2f2f2;
+}
+
+.page-title {
+  color: #707070;
+  font-size: 3em;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 50px;
 }
