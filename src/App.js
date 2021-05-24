@@ -32,6 +32,13 @@ function App() {
           </nav>
           <div className="col-10" id="dashboard">
             <div className="search-bar">
+              <nav className="container navbar navbar-light justify-content-between">
+                <a className="navbar-brand">nutrition, simplified 🥕</a>
+                <form className="form-inline">
+                  <input className="form-control mr-sm-2" type="search" placeholder="Search for a food" aria-label="Search" />
+                  <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              </nav>
             </div>
             <div className="dashboard-body">
             {/* A <Switch> looks through its children <Route>s and
