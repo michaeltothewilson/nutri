@@ -37,13 +37,34 @@ li > a:hover {
   margin-left: 15px;;
 }
 
+/* Search Bar*/
+.search-bar {
+  display: flex;
+  height: 10%;
+  align-items: center;
+}
+
+.search-bar > .navbar-light .navbar-brand {
+  color: #707070;
+  font-size: 1.5em;
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
+}
+
+.form-inline > input {
+   display: flex;
+}
+
+.form-inline > button {
+  display: flex;
+}
+
 /* Dashboard */
 #dashboard {
   padding: 0;
-}
-
-.search-bar {
-  height: 10%;
 }
 
 .dashboard-body {
