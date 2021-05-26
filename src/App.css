@@ -37,10 +37,10 @@ li > a:hover {
   margin-left: 15px;;
 }
 
-/* Search Bar*/
+/* Search Bar */
 .search-bar {
   display: flex;
-  height: 10%;
+  height: auto;
   align-items: center;
 }
 
@@ -79,4 +79,10 @@ li > a:hover {
   font-weight: 400;
   text-align: left;
   margin-left: 50px;
+}
+
+@media (max-width: 414px) {
+  .navbar.navbar-light{
+    justify-content: center !important;
+  }
 }
