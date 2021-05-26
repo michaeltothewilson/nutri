@@ -3,8 +3,8 @@ import axios from "axios";
 
 import React, { Component } from "react" 
 
-const api_id = 'ff4dde76'
-const api_key = '12971d77205afbd4cc6fd7c19715193c'
+const api_id = process.REACT_API_ID
+const api_key = process.REACT_API_KEY
 const api_url = 'https://trackapi.nutritionix.com/v2/search/instant?'
 const api_query = 'query='
 
@@ -58,6 +58,7 @@ class Browse extends Component {
             {this.state.foods.common.map((food, index) => (
               <div key={index}>
                 <img src={food.photo.thumb}/><h1>{food.food_name}</h1>
+                <button>Select</button>
               </div>
             ))}
           </div>
