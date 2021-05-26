@@ -13,7 +13,7 @@ function App() {
     <Router>
       <div className="App">
         <div className="row h-100">
-          <nav className="col-2 pt-4 sidebar">
+          <nav className="col-12 col-sm-2 pt-4 sidebar">
             <h1 className="logo">nutri</h1>
             <ul className="nav flex-column">
               <hr/>
@@ -30,7 +30,7 @@ function App() {
               <hr/>
             </ul>
           </nav>
-          <div className="col-10" id="dashboard">
+          <div className="col-12 col-sm-10" id="dashboard">
             <div className="search-bar">
               <nav className="container navbar navbar-light justify-content-between">
                 <a className="navbar-brand">nutrition, simplified 🥕</a>
