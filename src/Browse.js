@@ -3,17 +3,16 @@ import axios from "axios";
 
 import React, { Component } from "react" 
 
-const api_id = process.REACT_API_ID
-const api_key = process.REACT_API_KEY
-const api_url = 'https://trackapi.nutritionix.com/v2/search/instant?'
-const api_query = 'query='
+const api_id = process.env.REACT_APP_API_ID
+const api_key = process.env.REACT_APP_API_KEY
+const api_instant_url = 'https://trackapi.nutritionix.com/v2/search/instant?query='
+const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id='
 
 class Browse extends Component {
 
   state = {
-
     searchValue: '',
-    foods: []
+    foodList: [],
   }
 
   handleOnChange = event => {
@@ -21,20 +20,24 @@ class Browse extends Component {
   }
 
   handleSearch = () => {
-    this.makeApiCall(this.state.searchValue)
+    this.searchFood(this.state.searchValue)
   }
 
-  makeApiCall = searchInput => {
-    axios.get(api_url+api_query+searchInput, {
+  searchFood = searchInput => {
+    axios.get(api_instant_url+searchInput, {
       headers: {
         'x-app-id': api_id,
         'x-app-key': api_key,
       }
     })
     .then(response => {
-      this.setState({foods: response.data})
+      this.setState({foodList: response.data})
       console.log(response.data)
     })
+  }
+
+  selectFood = food_id => {
+    console.log(food_id)
   }
 
   render() {
@@ -53,12 +56,12 @@ class Browse extends Component {
           />
           <button onClick={this.handleSearch}>Search</button>
 
-          {this.state.foods.common ? (
+          {this.state.foodList.branded ? (
           <div>
-            {this.state.foods.common.map((food, index) => (
+            {this.state.foodList.branded.map((food, index) => (
               <div key={index}>
                 <img src={food.photo.thumb}/><h1>{food.food_name}</h1>
-                <button>Select</button>
+                <button onClick={this.selectFood(food.nix_item_id)}>Select</button>
               </div>
             ))}
           </div>
@@ -72,46 +75,3 @@ class Browse extends Component {
 }
 
 export default Browse
-
-
-/*
-export default function Browse() {
-  
-
-  function getFood(){
-    var search = document.getElementById("food_input").value
-    console.log(search)
-
-    axios.get(api_url+api_query+search, {
-      headers: {
-        'x-app-id': api_id,
-        'x-app-key': api_key,
-      }
-    })
-    .then(response =>{
-      const food_array = response.data
-      console.log(food_array)
-    })
-  }
-
-  return (
-    <>
-      <h2 className="page-title pt-5">Browse Food</h2>
-      <div>
-        <h4>What did you eat?</h4>
-
-        <div>
-          <input type="text" name="ingredient" id="food_input"></input>
-        </div>
-
-        <div>
-          <button onClick={() => getFood()}>Search</button>
-        </div>
-
-      </div>
-    </>
-  );
-}
-
-*/
-
