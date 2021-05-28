@@ -70,17 +70,6 @@ class Browse extends Component {
     // Store the information locally
     localStorage.setItem("journal",JSON.stringify(food_log))
   }
- 
-    /*axios.get(api_item_url+food_id, {
-      headers: {
-        'x-app-id': api_id,
-        'x-app-key': api_key,
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })*/
-
 
   render() {
 
@@ -110,7 +99,7 @@ class Browse extends Component {
                 <h3>Fiber(g): {food.nf_dietary_fiber}</h3>
                 <h3>Protein(g): {food.nf_protein}</h3>
                 <h3>Sugar(g): {food.nf_sugars}</h3>
-                <button onClick={this.selectFood(food)}>Select</button>
+                <button onClick={this.selectFood.bind(this, food)}>Select</button>
               </div>
             ))}
           </div>
