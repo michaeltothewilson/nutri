@@ -1,0 +1,16 @@
+[
+    {
+        "name":"carrot",
+        "fiber":"1.7",
+        "protein":"0.6",
+        "carbs":"6",
+        "sugar":"2.9"
+    },
+    {
+        "name":"potato",
+        "fiber":"4.7",
+        "protein":"4.3",
+        "carbs":"37",
+        "sugar":"1.7"
+    }
+]
