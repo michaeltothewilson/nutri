@@ -1,13 +1,16 @@
+// Import Starter Pack
 import { render } from "@testing-library/react";
 import axios from "axios";
 
 import React, { Component } from "react" 
 
+// Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
 const api_key = process.env.REACT_APP_API_KEY
 const api_instant_url = 'https://trackapi.nutritionix.com/v2/search/instant?query='
 const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id='
 const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
+const headers= {'x-app-id': api_id,'x-app-key': api_key,}
 class Browse extends Component {
 
   state = {
@@ -23,25 +26,29 @@ class Browse extends Component {
     this.searchFood(this.state.searchValue)
   }
 
-  searchFood = searchInput => {
-    axios.get(api_instant_url+searchInput, {
-      headers: {
-        'x-app-id': api_id,
-        'x-app-key': api_key,
-      }
-    })
+  // Search Nutritionix for a Food Item
+  searchFood = food => {
+    // Variable Starter Pack
+    let params = {query: food}
+
+    // Send a Post Request to the Natural API end point
+    axios.post(api_natural_url, params, {headers,})
     .then(response => {
-      this.setState({foodList: response.data})
       console.log(response.data)
+
+      // The API will send us an array, let's put it into our Food List State
+      this.setState({foodList: response.data.foods})
     })
     .catch(error =>{
       console.log(error)
     })
   }
 
+  // Select a Food Item and store said item into local storage
   selectFood = food_id => {
     console.log(food_id)
-    axios.get(api_item_url+food_id, {
+    
+    /*axios.get(api_item_url+food_id, {
       headers: {
         'x-app-id': api_id,
         'x-app-key': api_key,
@@ -49,7 +56,7 @@ class Browse extends Component {
     })
     .catch(error => {
       console.log(error)
-    })
+    })*/
   }
 
   render() {
@@ -62,23 +69,30 @@ class Browse extends Component {
           <input type="text" 
                  name="food" 
                  id="food_input" 
-                 palceholder="What did you have to eat?" 
+                 placeholder="example: 1 pizzadilla" 
                  onChange={event => this.handleOnChange(event)} 
                  value={this.state.searchValue}
           />
           <button onClick={this.handleSearch}>Search</button>
 
-          {this.state.foodList.branded ? (
+          {this.state.foodList? (
           <div>
-            {this.state.foodList.branded.map((food, index) => (
+            {this.state.foodList.map((food, index) => (
               <div key={index}>
-                <img src={food.photo.thumb}/><h1>{food.food_name}</h1>
+                <img src={food.photo.thumb}/><h2>{food.food_name}</h2>
+                <h3>Calories: {food.nf_calories}</h3>
+                <h3>Fat(g): {food.nf_total_fat}</h3>
+                <h3>Sodium(mg): {food.nf_sodium}</h3>
+                <h3>Carbs(g): {food.nf_total_carbohydrate}</h3>
+                <h3>Fiber(g): {food.nf_dietary_fiber}</h3>
+                <h3>Protein(g): {food.nf_protein}</h3>
+                <h3>Sugar(g): {food.nf_sugars}</h3>
                 <button onClick={this.selectFood(food.nix_item_id)}>Select</button>
               </div>
             ))}
           </div>
           ):
-          (<p>Where's the food at?</p>
+          (<p>What noms did you nom?</p>
           )}
         </div>
       </div>
