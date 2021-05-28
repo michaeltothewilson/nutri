@@ -11,6 +11,9 @@ const api_instant_url = 'https://trackapi.nutritionix.com/v2/search/instant?quer
 const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id='
 const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 const headers= {'x-app-id': api_id,'x-app-key': api_key,}
+
+// Local Storage
+let food_log = []
 class Browse extends Component {
 
   state = {
@@ -45,9 +48,26 @@ class Browse extends Component {
   }
 
   // Select a Food Item and store said item into local storage
-  selectFood = food_id => {
-    console.log(food_id)
+  selectFood = food => {
+    console.log(food)
+
+    const foodEntry = {
+      'name': food.food_name,      
+      'photo': food.photo.thumb,
+      'calories': food.nf_calories,
+      'fat': food.nf_total_fat,
+      'sodium': food.nf_sodium,
+      'carbs': food.nf_total_carbohydrate,
+      'fiber': food.nf_dietary_fiber,
+      'protein': food.nf_protein,
+      'sugar':food.nf_sugars,
+    }
     
+    food_log.push(foodEntry)
+
+    localStorage.setItem("journal",JSON.stringify(food_log))
+    }
+ 
     /*axios.get(api_item_url+food_id, {
       headers: {
         'x-app-id': api_id,
@@ -57,7 +77,7 @@ class Browse extends Component {
     .catch(error => {
       console.log(error)
     })*/
-  }
+
 
   render() {
 
@@ -87,7 +107,7 @@ class Browse extends Component {
                 <h3>Fiber(g): {food.nf_dietary_fiber}</h3>
                 <h3>Protein(g): {food.nf_protein}</h3>
                 <h3>Sugar(g): {food.nf_sugars}</h3>
-                <button onClick={this.selectFood(food.nix_item_id)}>Select</button>
+                <button onClick={this.selectFood(food)}>Select</button>
               </div>
             ))}
           </div>
