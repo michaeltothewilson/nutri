@@ -7,7 +7,7 @@ const api_id = process.env.REACT_APP_API_ID
 const api_key = process.env.REACT_APP_API_KEY
 const api_instant_url = 'https://trackapi.nutritionix.com/v2/search/instant?query='
 const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id='
-
+const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 class Browse extends Component {
 
   state = {
@@ -34,10 +34,22 @@ class Browse extends Component {
       this.setState({foodList: response.data})
       console.log(response.data)
     })
+    .catch(error =>{
+      console.log(error)
+    })
   }
 
   selectFood = food_id => {
     console.log(food_id)
+    axios.get(api_item_url+food_id, {
+      headers: {
+        'x-app-id': api_id,
+        'x-app-key': api_key,
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   render() {
