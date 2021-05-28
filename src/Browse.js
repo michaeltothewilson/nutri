@@ -51,6 +51,7 @@ class Browse extends Component {
   selectFood = food => {
     console.log(food)
 
+    // Place all the data into an object
     const foodEntry = {
       'name': food.food_name,      
       'photo': food.photo.thumb,
@@ -63,10 +64,12 @@ class Browse extends Component {
       'sugar':food.nf_sugars,
     }
     
+    // Put the food entry into the food log array
     food_log.push(foodEntry)
 
+    // Store the information locally
     localStorage.setItem("journal",JSON.stringify(food_log))
-    }
+  }
  
     /*axios.get(api_item_url+food_id, {
       headers: {
