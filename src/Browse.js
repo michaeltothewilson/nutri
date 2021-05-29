@@ -62,6 +62,7 @@ class Browse extends Component {
       'fiber': food.nf_dietary_fiber,
       'protein': food.nf_protein,
       'sugar':food.nf_sugars,
+      'servings': food.serving_qty, 
     }
     
     // Put the food entry into the food log array
