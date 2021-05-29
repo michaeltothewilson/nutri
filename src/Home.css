@@ -71,3 +71,9 @@
 .sugar {
     margin-left: 50px;
 }
+
+.nutrient-emojis {
+    float: right;
+    font-size: 2em;
+    letter-spacing: 15px;
+}
