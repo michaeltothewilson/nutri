@@ -11,6 +11,15 @@
 function getEmojiCount(typeOfFood, amt) {
     let types = ['fiber', 'protein', 'carbs', 'water','sugar'];
     let num = 0;
+    
+    // Average Recommended Daily intake in grams according to the FDA
+    let fiberRDI = 30;
+    let proteinRDI = 50;
+    let carbRDI = 275;
+    let sugarRDI = 30;
+
+    // Number of emojis displayed at full RDI
+    const maxEmojis = 5;
 
     //returns -1 if the type of food isn't in the array
     if(!types.includes(typeOfFood)) {
@@ -20,19 +29,19 @@ function getEmojiCount(typeOfFood, amt) {
     //switch statement
     switch(typeOfFood){
         case "fiber":
-            num = Math.floor(amt/10);
+            num = Math.floor(amt/(fiberRDI/maxEmojis));
             break;
         case "protein":
-            num = Math.floor(amt/16.667);
+            num = Math.floor(amt/(proteinRDI/maxEmojis));
             break;
         case "carbs":
-            num = Math.floor(amt/91.667);
+            num = Math.floor(amt/(carbRDI/maxEmojis));
             break;
         case "water":
             num = Math.floor(amt);
             break;
         case "sugar":
-            num = Math.floor(amt/10);
+            num = Math.floor(amt/(sugarRDI/maxEmojis));
             break;
         default:
             console.log("ERROR: Unable to find type of food");

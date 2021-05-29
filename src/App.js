@@ -12,7 +12,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div className="row h-100">
+        <div className="page-content row h-100">
           <nav className="col-12 col-sm-2 pt-4 sidebar">
             <h1 className="logo">nutri</h1>
             <ul className="nav flex-column">
