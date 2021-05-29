@@ -5,22 +5,50 @@ export default function Home() {
     <>
       <h2 className="page-title pt-5">Dashboard</h2>
       <div className="container">
-        <section class="grid-container mt-4">
-          <div class="grid-item item1">
-            <div class="card">
-              <div class="card-header">
+        <section className="grid-container mt-4">
+          <div className="grid-item item1">
+            <div className="card">
+              <div className="card-header">
                 Nutrients
               </div>
-              <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <div className="card-body">
+                <div className="card nutrient-card">
+                  <div className="card-body">
+                    <span className="nutrient-header">Poophoria</span>
+                    <span className="nutrient-desc fiber">fiber</span>
+                  </div>
+                </div>
+                <div className="card nutrient-card">
+                  <div className="card-body">
+                    <span className="nutrient-header">Flex</span>
+                    <span className="nutrient-desc protein">protein</span>
+                  </div>
+                </div>
+                <div className="card nutrient-card">
+                  <div className="card-body">
+                    <span className="nutrient-header">Carbs</span>
+                    <span className="nutrient-desc carb">carbohydrates</span>
+                  </div>
+                </div>
+                <div className="card nutrient-card">
+                  <div className="card-body">
+                    <span className="nutrient-header">Drip</span>
+                    <span className="nutrient-desc water">water</span>
+                  </div>
+                </div>
+                <div className="card nutrient-card">
+                  <div className="card-body">
+                    <span className="nutrient-header">Sweet-tooth</span>
+                    <span className="nutrient-desc sugar">sugar</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="grid-item item2">
+          <div className="grid-item item2">
 
           </div>
-          <div class="grid-item item3">
+          <div className="grid-item item3">
 
           </div>
         </section>

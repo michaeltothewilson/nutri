@@ -42,6 +42,7 @@ li > a:hover {
   display: flex;
   height: auto;
   align-items: center;
+  background-color: white;
 }
 
 .search-bar > .navbar-light .navbar-brand {
@@ -63,14 +64,17 @@ li > a:hover {
 }
 
 /* Dashboard */
+.page-content{
+  background-color: #f2f2f2;
+}
+
 #dashboard {
   padding: 0;
 }
 
 .dashboard-body {
   margin-top: 0;
-  height: 90%;
-  background-color: #f2f2f2;
+  height: auto;
 }
 
 .page-title {
