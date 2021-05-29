@@ -1,7 +1,6 @@
 // Import Starter Pack
 import { render } from "@testing-library/react";
 import axios from "axios";
-
 import React, { Component } from "react" 
 
 // Global API Variable Starter Pack
@@ -12,8 +11,6 @@ const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_i
 const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 const headers= {'x-app-id': api_id,'x-app-key': api_key,}
 
-// Local Storage
-let food_log = []
 class Browse extends Component {
 
   state = {
@@ -65,11 +62,14 @@ class Browse extends Component {
       'servings': food.serving_qty, 
     }
     
+    // Get the the local storage item into an array or create an empty array
+    let foodJournal = typeof(localStorage) === undefined ? [] : JSON.parse(localStorage.getItem("journal"))
+
     // Put the food entry into the food log array
-    food_log.push(foodEntry)
+    foodJournal.push(foodEntry)
 
     // Store the information locally
-    localStorage.setItem("journal",JSON.stringify(food_log))
+    localStorage.setItem("journal",JSON.stringify(foodJournal))
   }
 
   render() {
