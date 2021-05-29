@@ -41,3 +41,4 @@ function getEmojiCount(typeOfFood, amt) {
     }
     return num;
 }
+module.exports = { getEmojiCount }

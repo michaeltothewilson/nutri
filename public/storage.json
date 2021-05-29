@@ -1,16 +1,18 @@
 [
     {
         "name":"carrot",
-        "fiber":"1.7",
-        "protein":"0.6",
-        "carbs":"6",
-        "sugar":"2.9"
+        "fiber":"10",
+        "protein":"17",
+        "carbs":"92",
+        "water":"1",
+        "sugar":"10"
     },
     {
         "name":"potato",
-        "fiber":"4.7",
+        "fiber":"20",
         "protein":"4.3",
         "carbs":"37",
+        "water":"0",
         "sugar":"1.7"
     }
 ]
