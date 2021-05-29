@@ -1,0 +1,22 @@
+/*foodlog stying*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  ul.foodlog {
+    list-style-type: none;
+  }
+  
+  li.title {
+    text-align: left;
+  }
+  
+  li.item {
+    float: left;
+  }
+  
+  span.emojis {
+    float: right;
+  }
