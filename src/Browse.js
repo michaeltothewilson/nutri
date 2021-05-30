@@ -49,7 +49,7 @@ class Browse extends Component {
     console.log(food)
 
     // Place all the data into an object
-    const foodEntry = {
+    let foodEntry = {
       'name': food.food_name,      
       'photo': food.photo.thumb,
       'calories': food.nf_calories,
@@ -62,8 +62,9 @@ class Browse extends Component {
       'servings': food.serving_qty, 
     }
     
+    console.log(foodEntry)
     // Get the the local storage item into an array or create an empty array
-    let foodJournal = typeof(localStorage) === undefined ? [] : JSON.parse(localStorage.getItem("journal"))
+    let foodJournal = localStorage.getItem("journal") === null ? [] : JSON.parse(localStorage.getItem("journal"))
 
     // Put the food entry into the food log array
     foodJournal.push(foodEntry)
