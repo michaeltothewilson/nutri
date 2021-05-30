@@ -15,14 +15,6 @@ export default function Home() {
   let carbs = "";
   let drip = "";
   let sugarTooth = "";
-
-  // TESTING nutrient count
-  console.log("fiber: " + totalFiber);
-  console.log("protein: " + totalProtein);
-  console.log("carbs: " + totalCarbs);
-  console.log("water: " + totalWater);
-  console.log("sugar: " + totalSugar);
-
   
   if(foodLog) {
     // Calculate total amounts of each nutrient
