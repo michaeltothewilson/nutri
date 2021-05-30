@@ -9,11 +9,19 @@ export default function Home() {
   let foodLog = JSON.parse(localStorage.getItem('journal'));
   console.log(foodLog);
 
+  // Initialize nutrients
   let poophoria = "";
   let flex = "";
   let carbs = "";
   let drip = "";
   let sugarTooth = "";
+
+  // TESTING nutrient count
+  console.log("fiber: " + totalFiber);
+  console.log("protein: " + totalProtein);
+  console.log("carbs: " + totalCarbs);
+  console.log("water: " + totalWater);
+  console.log("sugar: " + totalSugar);
 
   
   if(foodLog) {
