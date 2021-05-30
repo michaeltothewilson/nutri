@@ -8,53 +8,62 @@ export default function Home() {
   const RDI = 5;
   let foodLog = JSON.parse(localStorage.getItem('journal'));
   console.log(foodLog);
-  
-  // Calculate total amounts of each nutrient
-  const totalFiber = foodLog.reduce((acc, curr) => acc + curr.fiber, 0);
-  const totalProtein = foodLog.reduce((acc, curr) => acc + curr.protein, 0);
-  const totalCarbs = foodLog.reduce((acc, curr) => acc + curr.carbs, 0);
-  const totalWater = foodLog.reduce((acc, curr) => acc + curr.water, 0);
-  const totalSugar = foodLog.reduce((acc, curr) => acc + curr.sugar, 0);
 
-  // TESTING nutrient count
-  console.log("fiber: " + totalFiber);
-  console.log("protein: " + totalProtein);
-  console.log("carbs: " + totalCarbs);
-  console.log("water: " + totalWater);
-  console.log("sugar: " + totalSugar);
+  let poophoria = "";
+  let flex = "";
+  let carbs = "";
+  let drip = "";
+  let sugarTooth = "";
 
-  // Convert to number of emojis
-  let numFiberEmojis =  Emoji.getEmojiCount("fiber", totalFiber);
-  let numProteinEmojis =  Emoji.getEmojiCount("protein", totalProtein);
-  let numCarbEmojis =  Emoji.getEmojiCount("carbs", totalCarbs);
-  let numWaterEmojis =  Emoji.getEmojiCount("water", totalWater);
-  let numSugarEmojis =  Emoji.getEmojiCount("sugar", totalSugar);
   
-  // TESTING emoji count
-  console.log("fiber emojis: " + numFiberEmojis);
-  console.log("protein emojis: " + numProteinEmojis);
-  console.log("carb emojis: " + numCarbEmojis);
-  console.log("water emojis: " + numWaterEmojis);
-  console.log("sugar emojis: " + numSugarEmojis);
-  
-  // Ensure emojis cap at RDI
-  if (numFiberEmojis > RDI)
-    numFiberEmojis = RDI;
-  if (numProteinEmojis > RDI)
-    numProteinEmojis = RDI;
-  if (numCarbEmojis > RDI)
-    numCarbEmojis = RDI;
-  if (numWaterEmojis > RDI)
-    numWaterEmojis = RDI;
-  if (numSugarEmojis > RDI)
-    numSugarEmojis = RDI;
+  if(foodLog) {
+    // Calculate total amounts of each nutrient
+    const totalFiber = foodLog.reduce((acc, curr) => acc + curr.fiber, 0);
+    const totalProtein = foodLog.reduce((acc, curr) => acc + curr.protein, 0);
+    const totalCarbs = foodLog.reduce((acc, curr) => acc + curr.carbs, 0);
+    const totalWater = foodLog.reduce((acc, curr) => acc + curr.water, 0);
+    const totalSugar = foodLog.reduce((acc, curr) => acc + curr.sugar, 0);
 
-  // Build emoji strings
-  let poophoria = "💩".repeat(numFiberEmojis);
-  let flex = "💪".repeat(numProteinEmojis);
-  let carbs = "🥖".repeat(numCarbEmojis);
-  let drip = "💧".repeat(numWaterEmojis);
-  let sugarTooth = "🍭".repeat(numSugarEmojis);
+    // TESTING nutrient count
+    console.log("fiber: " + totalFiber);
+    console.log("protein: " + totalProtein);
+    console.log("carbs: " + totalCarbs);
+    console.log("water: " + totalWater);
+    console.log("sugar: " + totalSugar);
+
+    // Convert to number of emojis
+    let numFiberEmojis =  Emoji.getEmojiCount("fiber", totalFiber);
+    let numProteinEmojis =  Emoji.getEmojiCount("protein", totalProtein);
+    let numCarbEmojis =  Emoji.getEmojiCount("carbs", totalCarbs);
+    let numWaterEmojis =  Emoji.getEmojiCount("water", totalWater);
+    let numSugarEmojis =  Emoji.getEmojiCount("sugar", totalSugar);
+    
+    // TESTING emoji count
+    console.log("fiber emojis: " + numFiberEmojis);
+    console.log("protein emojis: " + numProteinEmojis);
+    console.log("carb emojis: " + numCarbEmojis);
+    console.log("water emojis: " + numWaterEmojis);
+    console.log("sugar emojis: " + numSugarEmojis);
+    
+    // Ensure emojis cap at RDI
+    if (numFiberEmojis > RDI)
+      numFiberEmojis = RDI;
+    if (numProteinEmojis > RDI)
+      numProteinEmojis = RDI;
+    if (numCarbEmojis > RDI)
+      numCarbEmojis = RDI;
+    if (numWaterEmojis > RDI)
+      numWaterEmojis = RDI;
+    if (numSugarEmojis > RDI)
+      numSugarEmojis = RDI;
+
+    // Build emoji strings
+    poophoria = "💩".repeat(numFiberEmojis);
+    flex = "💪".repeat(numProteinEmojis);
+    carbs = "🥖".repeat(numCarbEmojis);
+    drip = "💧".repeat(numWaterEmojis);
+    sugarTooth = "🍭".repeat(numSugarEmojis);
+  }
 
   return (
     <>
