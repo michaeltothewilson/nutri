@@ -3,6 +3,7 @@ import { render } from "@testing-library/react";
 import axios from "axios";
 import React, { Component } from "react" 
 import './Browse.css';
+
 // Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
 const api_key = process.env.REACT_APP_API_KEY
@@ -76,44 +77,44 @@ class Browse extends Component {
   render() {
 
     return (
-    <div className="col-12 col-sm-10" id="browse">
-      <div class="form-group">
-        <h2 className="page-title pt-5">Browse Food</h2>
-        <div>
-          <div>
-            <div className="form-inline">
-              <input type="text"
-                    className="form-control mr-sm-2" 
-                    type="search"
-                    aria-label="Search"
-                    id="food_input" 
-                    placeholder="example: 1 pizzadilla" 
-                    onChange={event => this.handleOnChange(event)} 
-                    value={this.state.searchValue}
-              />
-              <button type="button" class="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
-            </div>
+      <>
+        <h2 className="page-title pt-5">Browse</h2>
+        <div className="browsecontainer">
+          <section className="browse-grid-container mt-4">
+            <div className="grid-item item1">
+              <div className="form-inline">
+                <input type="text"
+                      className="form-control mr-sm-2" 
+                      type="search"
+                      aria-label="Search"
+                      id="food_input" 
+                      placeholder="example: 1 pizzadilla" 
+                      onChange={event => this.handleOnChange(event)} 
+                      value={this.state.searchValue}
+                />
+                <button type="button" className="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
+              </div>
               {this.state.foodList? (
               <div>
                 {this.state.foodList.map((food, index) => (
                   <div key={index}>
-                    <div class="card">
-                      <div class="card-block">
-                        <h4 class="card-title">{food.food_name}</h4>
-                        <h6 class="card-subtitle text-muted">{food.nf_calories} calories</h6>
-                        <h6 class="card-subtitle text-muted">{food.serving_qty} servings</h6>
+                    <div className="card">
+                      <div className="card-header">
+                        {food.serving_qty}{' '}
+                        {food.food_name} {' '}
+                        ({food.nf_calories} calories)
                       </div>
-                      <img src={food.photo.highres} alt={food.food_name}/>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Fat(g): {food.nf_total_fat}</li>
-                        <li class="list-group-item">Sodium(mg): {food.nf_sodium}</li>
-                        <li class="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
-                        <li class="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
-                        <li class="list-group-item">Protein(g): {food.nf_protein}</li>
-                        <li class="list-group-item">Sugar(g): {food.nf_sugars}</li>
+                      <img className="browse-card-img" src={food.photo.highres} alt={food.food_name}/>
+                      <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Fat(g): {food.nf_total_fat}</li>
+                        <li className="list-group-item">Sodium(mg): {food.nf_sodium}</li>
+                        <li className="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
+                        <li className="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
+                        <li className="list-group-item">Sugar(g): {food.nf_sugars}</li>
+                        <li className="list-group-item">Protein(g): {food.nf_protein}</li>
                       </ul>
-                      <div class="card-block">
-                        <button type="button" class="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.food_name} to food log</button>
+                      <div className="card">
+                        <button type="button" className="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.serving_qty} {food.food_name} to food log</button>
                       </div>
                     </div>
                   </div>
@@ -121,11 +122,11 @@ class Browse extends Component {
               </div>
               ):
               (<p>What noms did you nom?</p>
-              )}
-            </div>
-          </div>
+              )} 
+            </div> 
+          </section>
         </div>
-      </div>
+      </>
     )}
 }
 
