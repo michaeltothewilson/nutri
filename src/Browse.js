@@ -2,7 +2,7 @@
 import { render } from "@testing-library/react";
 import axios from "axios";
 import React, { Component } from "react" 
-
+import './Browse.css';
 // Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
 const api_key = process.env.REACT_APP_API_KEY
@@ -76,51 +76,56 @@ class Browse extends Component {
   render() {
 
     return (
-    <div>
-      <li class="list-group-item" className="page-title pt-5">Browse Food</li>
-      <div>
+    <div className="col-12 col-sm-10" id="browse">
+      <div class="form-group">
+        <h2 className="page-title pt-5">Browse Food</h2>
         <div>
-          <input type="text" 
-                 name="food" 
-                 id="food_input" 
-                 placeholder="example: 1 pizzadilla" 
-                 onChange={event => this.handleOnChange(event)} 
-                 value={this.state.searchValue}
-          />
-          <button type="button" class="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
-
-          {this.state.foodList? (
           <div>
-            {this.state.foodList.map((food, index) => (
-              <div key={index}>
-                <div class="card">
-                  <div class="card-block">
-                    <h4 class="card-title">{food.food_name}</h4>
-                    <h6 class="card-subtitle text-muted">{food.nf_calories} calories</h6>
-                    <h6 class="card-subtitle text-muted">{food.serving_qty} servings</h6>
+            <div className="form-inline">
+              <input type="text"
+                    className="form-control mr-sm-2" 
+                    type="search"
+                    aria-label="Search"
+                    id="food_input" 
+                    placeholder="example: 1 pizzadilla" 
+                    onChange={event => this.handleOnChange(event)} 
+                    value={this.state.searchValue}
+              />
+              <button type="button" class="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
+            </div>
+              {this.state.foodList? (
+              <div>
+                {this.state.foodList.map((food, index) => (
+                  <div key={index}>
+                    <div class="card">
+                      <div class="card-block">
+                        <h4 class="card-title">{food.food_name}</h4>
+                        <h6 class="card-subtitle text-muted">{food.nf_calories} calories</h6>
+                        <h6 class="card-subtitle text-muted">{food.serving_qty} servings</h6>
+                      </div>
+                      <img src={food.photo.highres} alt={food.food_name}/>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Fat(g): {food.nf_total_fat}</li>
+                        <li class="list-group-item">Sodium(mg): {food.nf_sodium}</li>
+                        <li class="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
+                        <li class="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
+                        <li class="list-group-item">Protein(g): {food.nf_protein}</li>
+                        <li class="list-group-item">Sugar(g): {food.nf_sugars}</li>
+                      </ul>
+                      <div class="card-block">
+                        <button type="button" class="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.food_name} to food log</button>
+                      </div>
+                    </div>
                   </div>
-                  <img src={food.photo.highres} alt={food.food_name}/>
-                  <div class="card-block">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Fat(g): {food.nf_total_fat}</li>
-                      <li class="list-group-item">Sodium(mg): {food.nf_sodium}</li>
-                      <li class="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
-                      <li class="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
-                      <li class="list-group-item">Protein(g): {food.nf_protein}</li>
-                      <li class="list-group-item">Sugar(g): {food.nf_sugars}</li>
-                    </ul>
-                    <button type="button" class="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.food_name} to food log</button>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+              ):
+              (<p>What noms did you nom?</p>
+              )}
+            </div>
           </div>
-          ):
-          (<p>What noms did you nom?</p>
-          )}
         </div>
       </div>
-    </div>
     )}
 }
 
