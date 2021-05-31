@@ -77,7 +77,7 @@ class Browse extends Component {
 
     return (
     <div>
-      <h2 className="page-title pt-5">Browse Food</h2>
+      <li class="list-group-item" className="page-title pt-5">Browse Food</li>
       <div>
         <div>
           <input type="text" 
@@ -87,21 +87,31 @@ class Browse extends Component {
                  onChange={event => this.handleOnChange(event)} 
                  value={this.state.searchValue}
           />
-          <button onClick={this.handleSearch}>Search</button>
+          <button type="button" class="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
 
           {this.state.foodList? (
           <div>
             {this.state.foodList.map((food, index) => (
               <div key={index}>
-                <img src={food.photo.thumb}/><h2>{food.food_name}</h2>
-                <h3>Calories: {food.nf_calories}</h3>
-                <h3>Fat(g): {food.nf_total_fat}</h3>
-                <h3>Sodium(mg): {food.nf_sodium}</h3>
-                <h3>Carbs(g): {food.nf_total_carbohydrate}</h3>
-                <h3>Fiber(g): {food.nf_dietary_fiber}</h3>
-                <h3>Protein(g): {food.nf_protein}</h3>
-                <h3>Sugar(g): {food.nf_sugars}</h3>
-                <button onClick={this.selectFood.bind(this, food)}>Select</button>
+                <div class="card">
+                  <div class="card-block">
+                    <h4 class="card-title">{food.food_name}</h4>
+                    <h6 class="card-subtitle text-muted">{food.nf_calories} calories</h6>
+                    <h6 class="card-subtitle text-muted">{food.serving_qty} servings</h6>
+                  </div>
+                  <img src={food.photo.highres} alt={food.food_name}/>
+                  <div class="card-block">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Fat(g): {food.nf_total_fat}</li>
+                      <li class="list-group-item">Sodium(mg): {food.nf_sodium}</li>
+                      <li class="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
+                      <li class="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
+                      <li class="list-group-item">Protein(g): {food.nf_protein}</li>
+                      <li class="list-group-item">Sugar(g): {food.nf_sugars}</li>
+                    </ul>
+                    <button type="button" class="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.food_name} to food log</button>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
