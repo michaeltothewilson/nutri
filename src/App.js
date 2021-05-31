@@ -8,6 +8,9 @@ import Home from "./Home";
 import FoodLog from "./FoodLog";
 import Browse from "./Browse";
 
+// Bootstrap React
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <Router>

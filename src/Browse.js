@@ -2,6 +2,7 @@
 import { render } from "@testing-library/react";
 import axios from "axios";
 import React, { Component } from "react" 
+import './Browse.css';
 
 // Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
@@ -76,41 +77,56 @@ class Browse extends Component {
   render() {
 
     return (
-    <div>
-      <h2 className="page-title pt-5">Browse Food</h2>
-      <div>
-        <div>
-          <input type="text" 
-                 name="food" 
-                 id="food_input" 
-                 placeholder="example: 1 pizzadilla" 
-                 onChange={event => this.handleOnChange(event)} 
-                 value={this.state.searchValue}
-          />
-          <button onClick={this.handleSearch}>Search</button>
-
-          {this.state.foodList? (
-          <div>
-            {this.state.foodList.map((food, index) => (
-              <div key={index}>
-                <img src={food.photo.thumb}/><h2>{food.food_name}</h2>
-                <h3>Calories: {food.nf_calories}</h3>
-                <h3>Fat(g): {food.nf_total_fat}</h3>
-                <h3>Sodium(mg): {food.nf_sodium}</h3>
-                <h3>Carbs(g): {food.nf_total_carbohydrate}</h3>
-                <h3>Fiber(g): {food.nf_dietary_fiber}</h3>
-                <h3>Protein(g): {food.nf_protein}</h3>
-                <h3>Sugar(g): {food.nf_sugars}</h3>
-                <button onClick={this.selectFood.bind(this, food)}>Select</button>
+      <>
+        <h2 className="page-title pt-5">Browse</h2>
+        <div className="browsecontainer">
+          <section className="browse-grid-container mt-4">
+            <div className="grid-item item1">
+              <div className="form-inline">
+                <input type="text"
+                      className="form-control mr-sm-2" 
+                      type="search"
+                      aria-label="Search"
+                      id="food_input" 
+                      placeholder="example: 1 pizzadilla" 
+                      onChange={event => this.handleOnChange(event)} 
+                      value={this.state.searchValue}
+                />
+                <button type="button" className="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
               </div>
-            ))}
-          </div>
-          ):
-          (<p>What noms did you nom?</p>
-          )}
+              {this.state.foodList? (
+              <div>
+                {this.state.foodList.map((food, index) => (
+                  <div key={index}>
+                    <div className="card">
+                      <div className="card-header">
+                        {food.serving_qty}{' '}
+                        {food.food_name} {' '}
+                        ({food.nf_calories} calories)
+                      </div>
+                      <img className="browse-card-img" src={food.photo.highres} alt={food.food_name}/>
+                      <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Fat(g): {food.nf_total_fat}</li>
+                        <li className="list-group-item">Sodium(mg): {food.nf_sodium}</li>
+                        <li className="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
+                        <li className="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
+                        <li className="list-group-item">Sugar(g): {food.nf_sugars}</li>
+                        <li className="list-group-item">Protein(g): {food.nf_protein}</li>
+                      </ul>
+                      <div className="card">
+                        <button type="button" className="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.serving_qty} {food.food_name} to food log</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              ):
+              (<p>What noms did you nom?</p>
+              )} 
+            </div> 
+          </section>
         </div>
-      </div>
-    </div>
+      </>
     )}
 }
 
