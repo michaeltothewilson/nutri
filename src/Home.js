@@ -72,7 +72,7 @@ export default function Home() {
         <section className="dashboard-grid-container">
           <div className="grid-item item1">
             <div className="card">
-              <div className="card-header">
+              <div className="card-header nutrients-header">
                 Nutrients
               </div>
               <div className="card-body">

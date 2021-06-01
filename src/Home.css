@@ -30,9 +30,9 @@
     text-align: left;
 }
 
-.card-header {
+.nutrients-header {
     padding: 15px;
-    background-color:  #F26835;
+    background-color:  #F26835 !important;
     color: white;
     font-size: 1.5em;
 }
