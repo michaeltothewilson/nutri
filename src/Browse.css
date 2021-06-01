@@ -1,0 +1,34 @@
+:root {
+  --nutri-orange: #f26835;
+}
+
+.browse-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 50px;
+}
+
+.browse-grid-container > .item1 {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.browse-card-img {
+  width: auto;
+  height: 200px;
+  object-fit: cover;
+}
+
+.browse-grid-item .card {
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 0px;
+}
+
+.browse-grid-item .card-header {
+  padding: 15px;
+  background-color: var(--nutri-orange) !important;
+  color: white;
+  font-size: 1.5em;
+}

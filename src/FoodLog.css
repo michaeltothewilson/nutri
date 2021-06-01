@@ -1,0 +1,47 @@
+/*foodlog stying*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    border: solid;
+    border-width: 1px;
+    margin: 5%;
+}
+
+h3.foodlog {
+    text-align: left;
+    background-color: #F26835;
+    color: white;
+    padding: 2%;
+    width: 100%;
+    grid-column-start: 1;
+}
+
+div.grid-box-1 {
+    padding: 2%;
+}
+
+div#textbox {
+    border-width: 1px;
+    border-style: none;
+    display: inline
+}
+
+p {
+    border-bottom: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+    padding: 1%;
+    font-size: 32px;
+}
+
+p.item {
+    text-align: left;
+    float: left;
+}
+
+p.emojis {
+    text-align: right;
+}

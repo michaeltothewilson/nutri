@@ -1,8 +1,8 @@
 // Import Starter Pack
 import { render } from "@testing-library/react";
 import axios from "axios";
-
 import React, { Component } from "react" 
+import './Browse.css';
 
 // Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
@@ -12,8 +12,6 @@ const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_i
 const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 const headers= {'x-app-id': api_id,'x-app-key': api_key,}
 
-// Local Storage
-let food_log = []
 class Browse extends Component {
 
   state = {
@@ -52,7 +50,7 @@ class Browse extends Component {
     console.log(food)
 
     // Place all the data into an object
-    const foodEntry = {
+    let foodEntry = {
       'name': food.food_name,      
       'photo': food.photo.thumb,
       'calories': food.nf_calories,
@@ -65,51 +63,70 @@ class Browse extends Component {
       'servings': food.serving_qty, 
     }
     
+    console.log(foodEntry)
+    // Get the the local storage item into an array or create an empty array
+    let foodJournal = localStorage.getItem("journal") === null ? [] : JSON.parse(localStorage.getItem("journal"))
+
     // Put the food entry into the food log array
-    food_log.push(foodEntry)
+    foodJournal.push(foodEntry)
 
     // Store the information locally
-    localStorage.setItem("journal",JSON.stringify(food_log))
+    localStorage.setItem("journal",JSON.stringify(foodJournal))
   }
 
   render() {
 
     return (
-    <div>
-      <h2 className="page-title pt-5">Browse Food</h2>
-      <div>
-        <div>
-          <input type="text" 
-                 name="food" 
-                 id="food_input" 
-                 placeholder="example: 1 pizzadilla" 
-                 onChange={event => this.handleOnChange(event)} 
-                 value={this.state.searchValue}
-          />
-          <button onClick={this.handleSearch}>Search</button>
-
-          {this.state.foodList? (
-          <div>
-            {this.state.foodList.map((food, index) => (
-              <div key={index}>
-                <img src={food.photo.thumb}/><h2>{food.food_name}</h2>
-                <h3>Calories: {food.nf_calories}</h3>
-                <h3>Fat(g): {food.nf_total_fat}</h3>
-                <h3>Sodium(mg): {food.nf_sodium}</h3>
-                <h3>Carbs(g): {food.nf_total_carbohydrate}</h3>
-                <h3>Fiber(g): {food.nf_dietary_fiber}</h3>
-                <h3>Protein(g): {food.nf_protein}</h3>
-                <h3>Sugar(g): {food.nf_sugars}</h3>
-                <button onClick={this.selectFood.bind(this, food)}>Select</button>
+      <>
+        <h2 className="page-title pt-5">Browse</h2>
+        <div className="browse-container">
+          <section className="browse-grid-container mt-4">
+            <div className="browse-grid-item item1">
+              <div className="form-inline">
+                <input type="text"
+                      className="form-control mr-sm-2" 
+                      type="search"
+                      aria-label="Search"
+                      id="food_input" 
+                      placeholder="example: 1 pizzadilla" 
+                      onChange={event => this.handleOnChange(event)} 
+                      value={this.state.searchValue}
+                />
+                <button type="button" className="btn btn-outline-success" onClick={this.handleSearch}>Search</button>
               </div>
-            ))}
-          </div>
-          ):
-          (<p>What noms did you nom?</p>
-          )}
+              {this.state.foodList? (
+              <div>
+                {this.state.foodList.map((food, index) => (
+                  <div key={index}>
+                    <div className="card">
+                      <div className="card-header">
+                        {food.serving_qty}{' '}
+                        {food.food_name} {' '}
+                        ({food.nf_calories} calories)
+                      </div>
+                      <img className="browse-card-img" src={food.photo.highres} alt={food.food_name}/>
+                      <ul className="list-group list-group-flush">
+                        <li className="list-group-item">Fat(g): {food.nf_total_fat}</li>
+                        <li className="list-group-item">Sodium(mg): {food.nf_sodium}</li>
+                        <li className="list-group-item">Carbs(g): {food.nf_total_carbohydrate}</li>
+                        <li className="list-group-item">Fiber(g): {food.nf_dietary_fiber}</li>
+                        <li className="list-group-item">Sugar(g): {food.nf_sugars}</li>
+                        <li className="list-group-item">Protein(g): {food.nf_protein}</li>
+                      </ul>
+                      <div className="card">
+                        <button type="button" className="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.serving_qty} {food.food_name} to food log</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              ):
+              (<p>What noms did you nom?</p>
+              )} 
+            </div> 
+          </section>
         </div>
-      </div>
-    </div>
+      </>
     )}
 }
 
