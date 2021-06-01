@@ -27,7 +27,9 @@ div#textbox {
     display: inline
 }
 
-p {
+p.item {
+    text-align: left;
+    float: left;
     border-bottom: solid;
     border-top: none;
     border-left: none;
@@ -37,11 +39,13 @@ p {
     font-size: 32px;
 }
 
-p.item {
-    text-align: left;
-    float: left;
-}
-
 p.emojis {
     text-align: right;
+    border-bottom: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+    padding: 1%;
+    font-size: 32px;
 }
