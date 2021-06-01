@@ -40,6 +40,11 @@
 .nutrient-card {
     padding: 15px;
     margin-top: 10px;
+
+}
+
+.nutrient-card:hover {
+    background-color: #e6ffd5;
 }
 
 .nutrient-header {
