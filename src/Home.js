@@ -69,10 +69,10 @@ export default function Home() {
     <>
       <h2 className="page-title pt-5">Dashboard</h2>
       <div className="container">
-        <section className="dashboard-grid-container mt-4">
+        <section className="dashboard-grid-container">
           <div className="grid-item item1">
             <div className="card">
-              <div className="card-header">
+              <div className="card-header nutrients-header">
                 Nutrients
               </div>
               <div className="card-body">
