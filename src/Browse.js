@@ -79,9 +79,9 @@ class Browse extends Component {
     return (
       <>
         <h2 className="page-title pt-5">Browse</h2>
-        <div className="browsecontainer">
+        <div className="browse-container">
           <section className="browse-grid-container mt-4">
-            <div className="grid-item item1">
+            <div className="browse-grid-item item1">
               <div className="form-inline">
                 <input type="text"
                       className="form-control mr-sm-2" 

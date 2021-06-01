@@ -2,7 +2,7 @@
   --nutri-orange: #f26835;
 }
 
-.container {
+.browse-container {
   padding: 10px;
   margin-left: 50px;
 }
@@ -26,12 +26,12 @@
   object-fit: cover;
 }
 
-.card {
+.browse-grid-item .card {
   text-align: left;
   margin-top: 10px;
 }
 
-.card-header {
+.browse-grid-item .card-header {
   padding: 15px;
   background-color: var(--nutri-orange) !important;
   color: white;
