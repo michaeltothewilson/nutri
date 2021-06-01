@@ -62,7 +62,7 @@ export default function FoodLog() {
                   } 
                 }
                 if(emojiString === "") {
-                  emojiString = "none 😔"
+                  emojiString = "not enough for 1/5 of RDI 😖"
                 }
                 return (
                   <div id="textbox">
