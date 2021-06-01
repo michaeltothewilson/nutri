@@ -2,16 +2,10 @@
   --nutri-orange: #f26835;
 }
 
-.browse-container {
-  padding: 10px;
-  margin-left: 50px;
-}
-
 .browse-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
   margin: 50px;
 }
 
@@ -29,6 +23,7 @@
 .browse-grid-item .card {
   text-align: left;
   margin-top: 10px;
+  padding-left: 0px;
 }
 
 .browse-grid-item .card-header {
