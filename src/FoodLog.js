@@ -18,8 +18,8 @@ export default function FoodLog() {
     <>
       <h2 className="page-title pt-5">Food Log</h2>
       <div className="grid-container">
-        <ul className="foodlog">
-          <li className="title">What you ate today:</li>  
+        <h3 className="foodlog">What you ate today:</h3>
+        <div className="grid-box-1">
           {
             food_log? food_log.map(
               function(food_log) {
@@ -61,13 +61,20 @@ export default function FoodLog() {
                     emojiString += emoji
                   } 
                 }
+                if(emojiString === "") {
+                  emojiString = "none 😔"
+                }
                 return (
-                  <li className="item">{food_log.name}  <span className="emojis"> emojis: {emojiString}</span></li>
+                  <div id="textbox">
+                    <p className="item">{food_log.name} </p>
+                    <p className="emojis">{emojiString}</p>
+                    <br />
+                  </div>
                 )
               }
             ):""
           }
-        </ul>
+        </div>  
       </div>
     </>
   );
