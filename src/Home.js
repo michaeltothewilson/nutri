@@ -16,6 +16,13 @@ export default function Home() {
   let drip = "";
   let sugarTooth = "";
   
+  // Keep track of which nutrients are filled
+  let fiberIsFilled = false;
+  let proteinIsFilled = false;
+  let carbIsFilled = false;
+  let waterIsFilled = false;
+  let sugarIsFilled = false;
+
   if(foodLog) {
     // Calculate total amounts of each nutrient
     const totalFiber = foodLog.reduce((acc, curr) => acc + curr.fiber, 0);
@@ -44,18 +51,28 @@ export default function Home() {
     console.log("carb emojis: " + numCarbEmojis);
     console.log("water emojis: " + numWaterEmojis);
     console.log("sugar emojis: " + numSugarEmojis);
-    
+
     // Ensure emojis cap at RDI
-    if (numFiberEmojis > RDI)
+    if (numFiberEmojis >= RDI) {
       numFiberEmojis = RDI;
-    if (numProteinEmojis > RDI)
+      fiberIsFilled = true;
+    }
+    if (numProteinEmojis > RDI) {
       numProteinEmojis = RDI;
-    if (numCarbEmojis > RDI)
+      proteinIsFilled = true;
+    }
+    if (numCarbEmojis > RDI) {
       numCarbEmojis = RDI;
-    if (numWaterEmojis > RDI)
+      carbIsFilled = true;
+    }
+    if (numWaterEmojis > RDI) {
       numWaterEmojis = RDI;
-    if (numSugarEmojis > RDI)
+      waterIsFilled = true;
+    }
+    if (numSugarEmojis > RDI) {
       numSugarEmojis = RDI;
+      sugarIsFilled = true;
+    }
 
     // Build emoji strings
     poophoria = "💩".repeat(numFiberEmojis);
@@ -64,6 +81,54 @@ export default function Home() {
     drip = "💧".repeat(numWaterEmojis);
     sugarTooth = "🍭".repeat(numSugarEmojis);
   }
+
+  // When DOM has loaded, check if each nutrient is filled
+  document.addEventListener("DOMContentLoaded", function() { 
+    let fiberCard = document.querySelector(".nutrient-card-fiber");
+    let proteinCard = document.querySelector(".nutrient-card-protein");
+    let carbCard = document.querySelector(".nutrient-card-carbs");
+    let waterCard = document.querySelector(".nutrient-card-water");
+    let sugarCard = document.querySelector(".nutrient-card-sugar");
+    
+    // TESTING
+    console.log(fiberCard);
+    console.log(proteinCard);
+    console.log(carbCard);
+    console.log(waterCard);
+    console.log(sugarCard);
+
+    // If nutrient is filled, add the associated class required for hover styling
+    if(fiberIsFilled) {
+      if(fiberCard.classList.contains('nutrient-not-filled')){
+        fiberCard.classList.remove('nutrient-not-filled');
+        fiberCard.classList.add('nutrient-filled');
+      }
+    }
+    if(proteinIsFilled) {
+      if(proteinCard.classList.contains('nutrient-not-filled')){
+        proteinCard.classList.remove('nutrient-not-filled');
+        proteinCard.classList.add('nutrient-filled');
+      }
+    }
+    if(carbIsFilled) {
+      if(carbCard.classList.contains('nutrient-not-filled')){
+        carbCard.classList.remove('nutrient-not-filled');
+        carbCard.classList.add('nutrient-filled');
+      }
+    }
+    if(waterIsFilled) {
+      if(waterCard.classList.contains('nutrient-not-filled')){
+        waterCard.classList.remove('nutrient-not-filled');
+        waterCard.classList.add('nutrient-filled');
+      }
+    }
+    if(sugarIsFilled) {
+      if(sugarCard.classList.contains('nutrient-filled')){
+        sugarCard.classList.remove('nutrient-filled');
+        sugarCard.classList.add('nutrient-not-filled');
+      }
+    }
+  });
 
   return (
     <>
@@ -76,35 +141,35 @@ export default function Home() {
                 Nutrients
               </div>
               <div className="card-body">
-                <div className="card nutrient-card">
+                <div className="card nutrient-card nutrient-card-fiber nutrient-not-filled">
                   <div className="card-body">
                     <span className="nutrient-header">Poophoria</span>
                     <span className="nutrient-desc fiber">fiber</span>
                     <span className="nutrient-emojis">{poophoria}</span>
                   </div>
                 </div>
-                <div className="card nutrient-card">
+                <div className="card nutrient-card nutrient-card-protein nutrient-not-filled">
                   <div className="card-body">
                     <span className="nutrient-header">Flex</span>
                     <span className="nutrient-desc protein">protein</span>
                     <span className="nutrient-emojis">{flex}</span>
                   </div>
                 </div>
-                <div className="card nutrient-card">
+                <div className="card nutrient-card nutrient-card-carbs nutrient-not-filled">
                   <div className="card-body">
                     <span className="nutrient-header">Carbs</span>
                     <span className="nutrient-desc carb">carbohydrates</span>
                     <span className="nutrient-emojis">{carbs}</span>
                   </div>
                 </div>
-                <div className="card nutrient-card">
+                <div className="card nutrient-card nutrient-card-water nutrient-not-filled">
                   <div className="card-body">
                     <span className="nutrient-header">Drip</span>
                     <span className="nutrient-desc water">water</span>
                     <span className="nutrient-emojis">{drip}</span>
                   </div>
                 </div>
-                <div className="card nutrient-card">
+                <div className="card nutrient-card nutrient-card-sugar nutrient-filled">
                   <div className="card-body">
                     <span className="nutrient-header">Sweet-tooth</span>
                     <span className="nutrient-desc sugar">sugar</span>

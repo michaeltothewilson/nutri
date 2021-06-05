@@ -43,8 +43,12 @@
 
 }
 
-.nutrient-card:hover {
+.nutrient-filled:hover {
     background-color: #e6ffd5;
+}
+
+.nutrient-not-filled:hover {
+    background-color: #ffe7e7;
 }
 
 .nutrient-header {
