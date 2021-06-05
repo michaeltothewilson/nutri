@@ -1,8 +1,9 @@
 // Import Starter Pack
 import { render } from "@testing-library/react";
 import axios from "axios";
-import React, { Component } from "react" 
+import React, { Component, useState } from "react" 
 import './Browse.css';
+import Popover from 'react-tiny-popover'
 
 // Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
@@ -11,7 +12,6 @@ const api_instant_url = 'https://trackapi.nutritionix.com/v2/search/instant?quer
 const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id='
 const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 const headers= {'x-app-id': api_id,'x-app-key': api_key,}
-
 class Browse extends Component {
 
   state = {
@@ -75,6 +75,7 @@ class Browse extends Component {
   }
 
   render() {
+   
 
     return (
       <>
@@ -114,7 +115,18 @@ class Browse extends Component {
                         <li className="list-group-item">Protein(g): {food.nf_protein}</li>
                       </ul>
                       <div className="card">
-                        <button type="button" className="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.serving_qty} {food.food_name} to food log</button>
+                      
+                      <Popover isOpen={this.isPopoverOpen}
+                               positions={['top', 'bottom', 'left', 'right']} // preferred positions by priority
+                               content={(<div>Success!</div>)}>
+                        <button type="button" 
+                                className="btn btn-outline-success" 
+                                size="lg" 
+                                onClick={()=> {this.selectFood.bind(this, food); () => this.setState({isPopoverOpen: !isPopoverOpen})}}>
+                                Add {food.serving_qty} {food.food_name} to food log
+                        </button>
+                      </Popover>;
+                        
                       </div>
                     </div>
                   </div>
