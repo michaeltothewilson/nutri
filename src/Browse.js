@@ -122,7 +122,7 @@ class Browse extends Component {
                         <button type="button" 
                                 className="btn btn-outline-success" 
                                 size="lg" 
-                                onClick={()=> {this.selectFood.bind(this, food); () => this.setState({isPopoverOpen: !isPopoverOpen})}}>
+                                onClick={()=> {this.selectFood.bind(this, food); this.setState({isPopoverOpen: !this.isPopoverOpen})}}>
                                 Add {food.serving_qty} {food.food_name} to food log
                         </button>
                       </Popover>;
