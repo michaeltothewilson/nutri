@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import axios from "axios";
 import React, { Component, useState } from "react" 
 import './Browse.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 // Global API Variable Starter Pack
@@ -140,6 +140,7 @@ class Browse extends Component {
                         </Button>
                         <Popover
                           placement="top"
+                          trigger="focus"
                           isOpen={popoverOpen}
                           target="mypopover"
                           toggle={this.togglePopover}>
