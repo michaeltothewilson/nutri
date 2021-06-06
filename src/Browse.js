@@ -1,8 +1,10 @@
 // Import Starter Pack
 import { render } from "@testing-library/react";
 import axios from "axios";
-import React, { Component } from "react" 
+import React, { Component, useState } from "react" 
 import './Browse.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Popover, PopoverHeader, PopoverBody } from "reactstrap";
 
 // Global API Variable Starter Pack
 const api_id = process.env.REACT_APP_API_ID
@@ -11,8 +13,19 @@ const api_instant_url = 'https://trackapi.nutritionix.com/v2/search/instant?quer
 const api_item_url = 'https://trackapi.nutritionix.com/v2/search/item?nix_item_id='
 const api_natural_url = 'https://trackapi.nutritionix.com/v2/natural/nutrients'
 const headers= {'x-app-id': api_id,'x-app-key': api_key,}
-
 class Browse extends Component {
+  constructor(){
+    super()
+    this.state = {
+      name: "React",
+      popoverOpen: false
+    }
+    this.togglePopover = this.togglePopover.bind(this)
+  }
+
+  togglePopover(){
+    this.setState({ popoverOpen: !this.state.popoverOpen })  
+  }
 
   state = {
     searchValue: '',
@@ -75,7 +88,8 @@ class Browse extends Component {
   }
 
   render() {
-
+   
+    const { popoverOpen } = this.state;
     return (
       <>
         <h2 className="page-title pt-5">Browse</h2>
@@ -114,14 +128,36 @@ class Browse extends Component {
                         <li className="list-group-item">Protein(g): {food.nf_protein}</li>
                       </ul>
                       <div className="card">
-                        <button type="button" className="btn btn-outline-success" size="lg" onClick={this.selectFood.bind(this, food)}>Add {food.serving_qty} {food.food_name} to food log</button>
+                        <Button outline color="success" size="lg" block
+                                id="mypopover"
+                                type="button" 
+                                onClick= {this.selectFood.bind(this, food)}
+                                >
+                                Add {food.serving_qty} {food.food_name} to food log
+                        </Button>
+                        <Popover
+                          placement="top"
+                          trigger="focus"
+                          isOpen={popoverOpen}
+                          target="mypopover"
+                          toggle={this.togglePopover}>
+                          <PopoverBody>
+                            {food.serving_qty} {food.food_name} , got it!
+                          </PopoverBody>
+                        </Popover>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
               ):
-              (<p>What noms did you nom?</p>
+              (<div class="card">
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>What noms did you nom?</p>
+                </blockquote>
+              </div>
+            </div>
               )} 
             </div> 
           </section>
