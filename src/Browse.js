@@ -128,8 +128,6 @@ class Browse extends Component {
                         <li className="list-group-item">Protein(g): {food.nf_protein}</li>
                       </ul>
                       <div className="card">
-                      
-                      
                         <Button outline color="success" size="lg" block
                                 id="mypopover"
                                 type="button" 
@@ -145,7 +143,7 @@ class Browse extends Component {
                           target="mypopover"
                           toggle={this.togglePopover}>
                           <PopoverBody>
-                            {food.serving_qty} {food.food_name} coming right up!
+                            {food.serving_qty} {food.food_name} , got it!
                           </PopoverBody>
                         </Popover>
                       </div>
@@ -154,7 +152,13 @@ class Browse extends Component {
                 ))}
               </div>
               ):
-              (<p>What noms did you nom?</p>
+              (<div class="card">
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>What noms did you nom?</p>
+                </blockquote>
+              </div>
+            </div>
               )} 
             </div> 
           </section>
